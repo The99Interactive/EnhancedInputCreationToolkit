@@ -2,26 +2,26 @@
 
 ## Overview
 
-The Enhanced Input Migration feature is a comprehensive system designed to automatically convert legacy Unreal Engine input systems (based on `InputSettings`) to the newer Enhanced Input system introduced in more recent engine versions. This feature analyzes existing input mappings, creates appropriate Enhanced Input assets, and configures them to match the original behavior as closely as possible.
+The Enhanced Input Migration feature is a comprehensive system designed to automatically convert legacy Axis and Action inputs (found in `Project Settings -> Input`) to the new Enhanced Input system introduced in more recent engine versions. This feature analyzes existing input mappings, creates appropriate Enhanced Input assets, and configures them to match the original behavior as closely as possible.
 
 ## End-to-End Migration Process
 
 ### 1. Workflow Initiation
 
-The migration process begins when a user selects the "Migrate Legacy Input Actions" option from the Tools menu. This triggers the `OnMigrateLegacyInputClicked()` method in `FEnhancedInputCreationToolkitModule`, which presents a path picker dialog for the user to choose where to save the migrated input assets.
+The migration process begins when a user selects the "Migrate Legacy Input Actions" option from the Tools menu. This triggers the private function `OnMigrateLegacyInputClicked()` in `FEnhancedInputCreationToolkitModule`, which presents a path picker dialog for the user to choose where to save the migrated input assets.
 
 ### 2. Directory Structure Creation
 
 Once the user selects an output path, the system:
 
-1. Calls `MigrateLegacyInput(const FString& OutputPath)` which:
-   - Uses `FAssetUtilityHelper::CreateEnhancedInputDirectories()` to create appropriate subdirectories:
+1. Calls a private function `MigrateLegacyInput(const FString& OutputPath)` which:
+   - Uses a helper asset utility function`FAssetUtilityHelper::CreateEnhancedInputDirectories()` to create appropriate subdirectories:
      - `/Actions` - For Input Action assets
      - `/Mappings` - For Input Mapping Context assets
 
 ### 3. Legacy Input Extraction
 
-The `FLegacyInputExtractor` class handles retrieving existing input configurations:
+The `FLegacyInputExtractor` private class handles retrieving existing input configurations:
 
 1. `GetLegacyInputMappings()` loads the project's `UInputSettings` and extracts:
    - Action mappings (button presses)
@@ -35,7 +35,7 @@ The `FLegacyInputExtractor` class handles retrieving existing input configuratio
 
 ### 4. Enhanced Input Asset Creation
 
-The `FLegacyInputMigrator` class orchestrates the migration process:
+The `FLegacyInputMigrator` private class orchestrates the migration process:
 
 1. **Modifier Action Creation**: First creates special Input Actions for modifier keys (Shift, Ctrl, Alt, Cmd) via `CreateModifierActions()`, which are necessary for creating chorded inputs.
 
