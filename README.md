@@ -92,10 +92,14 @@ The `Create Mapping Context from Input Actions Folder` is setup to enable a deve
 For screenshot examples of this in action, check out the [Create Mapping Context from Input Action Folder.](./examples/CreateMappingContextFromInputActionsFolder.md)
 
 ---
-Notes
+Additional Notes:
+
 - All actions are performed via modal dialogs for folder and asset name selection.
 - The plugin uses Unreal’s Content Browser and Asset Tools for asset creation and management.
 - If you encounter warnings about asset registry filters, ensure you are using Unreal Engine 5.2 or later and that the plugin is up to date.
+
 ---
-Support
+
+Support:
+
 For bugs or feature requests, please create a [New Issue](https://github.com/The99Interactive/EnhancedInputCreationToolkit/issues).
